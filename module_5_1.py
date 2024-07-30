@@ -27,14 +27,18 @@ class House():
 
 	def go_to(self, new_floor):
 		if 0 < new_floor <= self.number_of_floors:
-			print('go to ', new_floor, 'floor')
+			print(self.name, 'go to ', new_floor, 'floor')
 		else:
 			print(self.name, "Такого этажа не существует", new_floor, sep=" >> ")
 
+	def name__(self):
+		return self.name
 
-house1 = House('ЖК Эльбрус', 30)
-house1.go_to(55)
-h1 = House('ЖК Горский', 18)
-h2 = House('Домик в деревне', 2)
-h1.go_to(5)
-h2.go_to(10)
+
+if __name__ == 'main':
+	house1 = House('ЖК Эльбрус', 30)
+	house1.go_to(30)
+	h1 = House('ЖК Горский', 18)
+	h2 = House('Домик в деревне', 2)
+	h1.go_to(5)
+	h2.go_to(10)
