@@ -13,6 +13,8 @@ class haus:
 		self.floors = floors
 		base_class(self.name, floors)
 
+	#	base_class('ЖК Эльбрус', 30)
+
 	# __len__(self)  # - должен возвращать кол-во этажей здания self.number_of_floors.
 	# __str__(self)	"Название: <название>, кол-во этажей: <этажи>".
 	def __len__(self):
@@ -25,7 +27,6 @@ class haus:
 ###
 # h1 = House('ЖК Эльбрус', 10)
 # h2 = House('ЖК Акация', 20)
-#	base_class('ЖК Эльбрус', 30)
 h1 = haus('ЖК Эльбрус', 10)
 h2 = haus('ЖК Акация', 20)
 
