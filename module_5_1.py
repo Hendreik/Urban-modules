@@ -25,6 +25,7 @@ class House():
 	def __init__(self, name, floors):
 		self.number_of_floors = floors
 		self.name = name
+		print(name,floors,"floors")
 
 	def go_to(self, new_floor):
     		if 0 < new_floor <= self.number_of_floors:
@@ -46,7 +47,6 @@ class House():
 
 if __name__ == '__main__':
 	house1 = House('ЖК Эльбрус', 30)
-	house1.go_to(30)
 	h1 = House('ЖК Горский', 18)
 	h2 = House('Домик в деревне', 2)
 	h1.go_to(5)
