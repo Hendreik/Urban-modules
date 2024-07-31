@@ -27,6 +27,14 @@ class House():
 		self.name = name
 
 	def go_to(self, new_floor):
+    		if 0 < new_floor <= self.number_of_floors:
+      			print(self.name, '> go to ', new_floor, 'floor')
+      			for fl in range(1,new_floor+1):
+        			print(fl)
+    		else:
+      			print(self.name, "Такого этажа не существует", new_floor, sep=" => ")
+	    
+	def go_to1(self, new_floor):
 		if 0 < new_floor <= self.number_of_floors:
 			print(self.name, 'go to ', new_floor, 'floor')
 		else:
