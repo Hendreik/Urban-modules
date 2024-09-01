@@ -10,7 +10,6 @@
 Создайте объект класса Pegasus и вызовите каждый из ранее перечисленных методов, проверив их работу.
 """
 
-
 # Horse - класс описывающий лошадь. Объект этого класса обладает следующими атрибутами:
 # x_distance = 0 - пройденный путь.
 # sound = 'Frrr' - звук, который издаёт лошадь.
@@ -22,8 +21,11 @@ class Horse:
 	sound = 'Frrr'
 
 	def run(self, dx):
-		pass
+		self.x_distance += dx
 
+	def snd(self):
+		print(super().snd())
+		return super().sound
 
 # Eagle - класс описывающий орла. Объект этого класса обладает следующими атрибутами:
 # y_distance = 0 - высота полёта
@@ -36,8 +38,10 @@ class Eagle:
 	sound = 'I train, eat, sleep, and repeat'
 
 	def fly(self, dy):
-		return 0
+		self.y_distance += dy
 
+	def snd(self):
+		return Eagle.sound
 
 # Pegasus - класс описывающий пегаса. Наследуется от Horse и Eagle в том же порядке.
 # Объект такого класса должен обладать атрибутами классов родителей в порядке наследования.
@@ -49,21 +53,29 @@ class Eagle:
 class Pegasus(Horse, Eagle):
 
 	def move(self, dx, dy):
-		return 0
+		super().run(dx)
+		super().fly(dy)
 
 	def get_pos(self):
+		x = self.x_distance
+		y = self.y_distance
+		distance = (x, y)
+		return tuple(distance)
+
+	def voice(self):
+		sound_ = super().snd()
+		print(sound_)
+		print(Pegasus.mro())
 		return 0
 
-	def voice(self, sound):
-		return 0
 
-
+#####################
 p1 = Pegasus()
-#
-# print(p1.get_pos())
-# p1.move(10, 15)
-# print(p1.get_pos())
-# p1.move(-5, 20)
-# print(p1.get_pos())
-#
-# p1.voice()
+
+print(p1.get_pos())
+p1.move(10, 15)
+print(p1.get_pos())
+p1.move(-5, 20)
+print(p1.get_pos())
+
+p1.voice()
