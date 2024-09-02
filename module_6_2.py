@@ -22,18 +22,13 @@ I. Каждый объект Vehicle должен содержать следу�
 
 
 class Vehicle:
-	owner = ''
-	__model = ''
-	__engine_power = None
-	__color = ''
-	__COLOR_VARIANTS = ['white', 'yellow']
+	__COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 
 	def __init__(self, *args):
 		self.owner = args[0]
 		self.__model = args[1]
 		self.__engine_power = args[3]
 		self.__color = args[2]
-		self.__COLOR_VARIANTS = ['blue', 'red', 'green', 'black', 'white']
 
 	def get_model(self):
 		print("Модель:", self.__model)
