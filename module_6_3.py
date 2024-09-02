@@ -23,9 +23,8 @@ class Horse:
 	def run(self, dx):
 		self.x_distance += dx
 
-	def snd(self):
-		print(super().snd())
-		return super().sound
+	def snd2(self):
+		return self.sound
 
 # Eagle - класс описывающий орла. Объект этого класса обладает следующими атрибутами:
 # y_distance = 0 - высота полёта
@@ -52,6 +51,10 @@ class Eagle:
 
 class Pegasus(Horse, Eagle):
 
+	def __init__(self):
+		super(Horse, self).__init__()
+		super(Eagle, self).__init__()
+
 	def move(self, dx, dy):
 		super().run(dx)
 		super().fly(dy)
@@ -63,7 +66,7 @@ class Pegasus(Horse, Eagle):
 		return tuple(distance)
 
 	def voice(self):
-		sound_ = super().snd()
+		sound_ = self.snd()
 		print(sound_)
 		print(Pegasus.mro())
 		return 0
