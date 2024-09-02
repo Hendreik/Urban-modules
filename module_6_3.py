@@ -17,14 +17,13 @@
 # run(self, dx), где dx - изменение дистанции, увеличивает x_distance на dx.
 
 class Horse:
-	x_distance = 0
-	sound = 'Frrr'
+
+	def __init__(self):
+		self.x_distance = 0
+		self.sound = 'Frrr'
 
 	def run(self, dx):
 		self.x_distance += dx
-
-	def snd2(self):
-		return self.sound
 
 # Eagle - класс описывающий орла. Объект этого класса обладает следующими атрибутами:
 # y_distance = 0 - высота полёта
@@ -33,14 +32,12 @@ class Horse:
 # fly(self, dy) где dy - изменение дистанции, увеличивает y_distance на dy.
 
 class Eagle:
-	y_distance = 0
-	sound = 'I train, eat, sleep, and repeat'
+	def __init__(self):
+		self.y_distance = 0
+		self.sound = 'I train, eat, sleep, and repeat'
 
 	def fly(self, dy):
 		self.y_distance += dy
-
-	def snd(self):
-		return Eagle.sound
 
 # Pegasus - класс описывающий пегаса. Наследуется от Horse и Eagle в том же порядке.
 # Объект такого класса должен обладать атрибутами классов родителей в порядке наследования.
@@ -52,8 +49,8 @@ class Eagle:
 class Pegasus(Horse, Eagle):
 
 	def __init__(self):
-		super(Horse, self).__init__()
-		super(Eagle, self).__init__()
+		Horse.__init__(self)
+		Eagle.__init__(self)
 
 	def move(self, dx, dy):
 		super().run(dx)
@@ -66,8 +63,7 @@ class Pegasus(Horse, Eagle):
 		return tuple(distance)
 
 	def voice(self):
-		sound_ = self.snd()
-		print(sound_)
+		print(self.sound)
 		print(Pegasus.mro())
 		return 0
 
