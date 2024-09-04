@@ -5,7 +5,6 @@
 """
 import math
 
-
 class Figure:
 	"""
 	Атрибуты(инкапсулированные): __sides(список сторон (целые числа)), __color(список цветов в формате RGB)
@@ -89,8 +88,6 @@ class Circle(Figure):
 		super().__init__(color, sides, filled)
 		self.__radius = n / 2 / math.pi
 
-	# print(self.__radius)
-
 	def get_square(self):
 		print("площадь круга", end=" ")
 		return math.sqrt(self.__radius) * math.pi
@@ -171,8 +168,6 @@ class Cube(Figure):
 			sides.append(n)
 
 		super().__init__(color, sides, filled)
-
-	#		super().set_sides(sides)
 
 	def get_volume(self):
 		print("Oбъём куба", end=" ")
