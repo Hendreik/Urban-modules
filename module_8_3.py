@@ -17,7 +17,11 @@
 
 class Car:
 	def __init__(self, model, vin, numbers):
-		print('-' * 10)
+		try:
+			print('-' * 10)
+		except Exception as e:
+			print(e.__context__)
+
 		self.model = model
 		self.__vin = vin
 		self.__numbers = numbers
@@ -104,11 +108,20 @@ else:
 	print(f'{third.model} успешно создан')
 #########
 try:
-	car1 = Car('BMW', '123456', '')
+	car1 = Car('BMW', '1234567', '')
 except IncorrectVinNumber as e:
 	print(f'{e.message}')
 except IncorrectCarNumbers as e:
 	print(e.message)
+
+try:
+	car1 = Car()
+except IncorrectVinNumber as e:
+	print(f'{e.message}')
+except IncorrectCarNumbers as e:
+	print(e.message)
+except Exception as e:
+	print(e.__str__())
 """
 Работа методов __is_valid_vin и __is_valid_numbers:
 __is_valid_vin
