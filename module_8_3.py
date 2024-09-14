@@ -17,11 +17,7 @@
 
 class Car:
 	def __init__(self, model, vin, numbers):
-		try:
-			print('-' * 10)
-		except Exception as e:
-			print(e.__context__)
-
+		print('-' * 10)
 		self.model = model
 		self.__vin = vin
 		self.__numbers = numbers
@@ -61,7 +57,6 @@ class IncorrectVinNumber(BaseException):
 				self.message += self.str2
 		super().__init__(self.message)
 		print('raise > ', self.__class__.__name__)
-		return
 
 
 class IncorrectCarNumbers(Exception):
