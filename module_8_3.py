@@ -26,10 +26,10 @@ class Car:
 	def __is_valid_vin(self, vin_number):
 		try:
 			vin = int(vin_number)
-		# 1000000 до 9999999
 		except:
 			raise IncorrectVinNumber(vin_number, self.model, self.__numbers, mod=1)
 
+		# 1000000 до 9999999
 		if vin not in range(1000000, 9999999):
 			raise IncorrectVinNumber(vin_number, self.model, self.__numbers, mod=2)
 
@@ -116,7 +116,7 @@ except IncorrectVinNumber as e:
 except IncorrectCarNumbers as e:
 	print(e.message)
 except Exception as e:
-	print(e.__str__())
+	print('\n >>> ', e.__str__())
 """
 Работа методов __is_valid_vin и __is_valid_numbers:
 __is_valid_vin
