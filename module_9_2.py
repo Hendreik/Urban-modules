@@ -26,3 +26,5 @@ print(second_result)
 third_result = {}
 [third_result.update({s: len(s)}) for s in first_strings + second_strings if not len(s) % 2]
 print(third_result)
+third_result = {s: len(s) for s in first_strings + second_strings if not len(s) % 2}
+print(third_result)
