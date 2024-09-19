@@ -20,17 +20,25 @@ sum_three(1, 2, 3)
 
 def is_prime(function):
 	def wrapper(*args):
-		return function(*args)
+		res = function(*args)
+		return res
 
 	return wrapper
 
 
 @is_prime
 def sum_three(*args):
-	return sum(args)
+	res = sum(args)
+	if res % 2 == 0:
+		print(f'не простое {res}')
+	else:
+		print(f'простое {res}')
+	return res
 
 
 print(sum_three(-1, 2, 3))
 
 result = sum_three(2, 3, 6)
 print(result)
+
+print(sum_three(10, 12, 13, 14))
