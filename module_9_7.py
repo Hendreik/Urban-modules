@@ -25,11 +25,11 @@ def is_prime(function):
 
 	return wrapper
 
-
 @is_prime
 def sum_three(*args):
 	res = sum(args)
-	if res % 2 == 0:
+	res2 = [res % n for n in range(2, res) if res % n == 0]
+	if len(res2):
 		print(f'не простое {res}')
 	else:
 		print(f'простое {res}')
@@ -42,3 +42,8 @@ result = sum_three(2, 3, 6)
 print(result)
 
 print(sum_three(10, 12, 13, 14))
+
+sum_three(10, 1)
+sum_three(10, 1, 1)
+sum_three(10, 1, 1, 1)
+sum_three(10, 1, 3)
