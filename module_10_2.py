@@ -31,9 +31,15 @@ class Knight(Thread):
 				sleep(1)
 			st3 = f"{self.name_} одержал победу спустя {days} дней(дня)!"
 			print(st3)
+			self.ENEMY = 0
 
 		except Exception as e:
 			print(e.__str__())
+
+	def ending(self):
+		while self.ENEMY != 0:
+			sleep(1)
+		return self.ENEMY
 
 
 # Создание класса
@@ -49,3 +55,5 @@ print(first_knight.name, first_knight.is_alive(), " alive")
 print(second_knight.__getstate__(), second_knight.is_alive())
 
 assert threading.active_count() == 2
+
+print('All over', 'наши победили', first_knight.ending(), second_knight.ending())
