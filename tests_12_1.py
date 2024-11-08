@@ -21,13 +21,13 @@ class RunnerTest(unittest.TestCase):
 
 	def test_run(self):
 		r1=r.Runner("mick")
-		for i in range(0, 10):
+		for _ in range(0, 10):
 			r1.run()
 		self.assertEqual(r1.distance,100)
 	def test_challenge(self):
 		r1=r.Runner("mick")
 		r2=r.Runner("nick")
-		for i in range(0, 10):
+		for _ in range(0, 10):
 			r1.walk()
 			r2.run()
 		self.assertNotEqual(r1.distance,r2.distance,"Equal")
