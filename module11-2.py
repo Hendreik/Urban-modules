@@ -22,7 +22,6 @@ class Klass:
 	def metod_(self):
 		return
 
-
 def  introspection_info(obj):
 	pprint(type(obj))
 	pprint(in_.getmodule(obj))
@@ -31,7 +30,6 @@ def  introspection_info(obj):
 		pprint(getattr(obj,atr))
 	print('='* 10)
 	return
-
 
 
 obj1 = Klass()
