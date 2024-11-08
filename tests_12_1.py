@@ -8,29 +8,29 @@ test_challenge - метод в котором создаются 2 объект�
  вызываются методы run и walk соответственно. Т.к. дистанции должны быть разными, используйте метод assertNotEqual,
   чтобы убедится в неравенстве результатов.
 """
+
 import runner as r
 import unittest
 
 class RunnerTest(unittest.TestCase):
 	def test_walk(self):
-		self.r1=r.Runner("m")
-		for i in range(0, 10):
-			self.r1.walk()
-		self.assertEqual(self.r1.distance,50)
-		return
+		r1= r.Runner("mick")
+		for _ in range(10):
+			r1.walk()
+		self.assertEqual(r1.distance,50)
 
 	def test_run(self):
-		self.r1=r.Runner("m")
+		r1=r.Runner("mick")
 		for i in range(0, 10):
-			self.r1.run()
-		self.assertEqual(self.r1.distance,100)
+			r1.run()
+		self.assertEqual(r1.distance,100)
 	def test_challenge(self):
-		self.r1=r.Runner("m")
-		self.r2=r.Runner("n")
+		r1=r.Runner("mick")
+		r2=r.Runner("nick")
 		for i in range(0, 10):
-			self.r1.walk()
-			self.r2.run()
-		self.assertNotEqual(self.r1.distance,self.r2.distance,"Equal")
+			r1.walk()
+			r2.run()
+		self.assertNotEqual(r1.distance,r2.distance,"Equal")
 
 if __name__ == "__main__":
 	unittest.main()
