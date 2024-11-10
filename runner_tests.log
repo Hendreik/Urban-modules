@@ -1,0 +1,12 @@
+2024-11-10 23:25:08,327 || INFO || test_walk выполнен успешно. runner mick accelerated speed 160
+NoneType: None
+2024-11-10 23:25:08,327 || WARNING || Неверная скорость для Runner. incorrect data. name: mick speed: -160
+Traceback (most recent call last):
+  File "D:\- Work\GitHub\Urban\Module.12\tests_12_4.py", line 14, in test_walk
+    r1= rte.Runner(name, speed)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\- Work\GitHub\Urban\Module.12\rt_with_exceptions.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -160
+2024-11-10 23:25:08,332 || INFO || test_run выполнен успешно. runner mick
+2024-11-10 23:25:08,332 || WARNING || Неверный тип данных для объекта Runner. incorrect data: name: 160
