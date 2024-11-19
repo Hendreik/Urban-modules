@@ -7,6 +7,14 @@ title(название продукта) - текст (не пустой)
 description(описание) - текст
 price(цена) - целое число (не пустой)
 get_all_products, которая возвращает все записи из таблицы Products, полученные при помощи SQL запроса.
+""" """
+Дополните файл crud_functions.py, написав и дополнив в нём следующие функции:
+initiate_db дополните созданием таблицы Users, если она ещё не создана при помощи SQL запроса. Эта таблица должна содержать следующие поля:
+id - целое число, первичный ключ
+username - текст (не пустой)
+email - текст (не пустой)
+age - целое число (не пустой)
+balance - целое число (не пустой)
 """
 import sqlite3
 
@@ -33,7 +41,31 @@ def initiate_db():
 	finally:
 		conn.commit()
 		cur.execute(''' 
-		CREATE INDEX IF NOT EXISTS IDX_Products ON Products(title)
+		CREATE UNIQUE INDEX IF NOT EXISTS IDX_Products ON Products(title)
+		''')
+		conn.commit()
+#-----------
+	try:
+		cur.execute('''
+		DROP TABLE IF EXISTS Users
+		''')
+		conn.commit()
+
+		cur.execute('''
+		CREATE TABLE IF NOT EXISTS Users(
+		id INT (1,1) PRIMARY KEY,
+		username TEXT NOT NULL,
+		email TEXT NOT NULL,
+		age INTEGER NOT NULL,
+		balance  INTEGER NOT NULL
+		)
+		''')
+	except BaseException as e:
+		print(e.__str__())
+	finally:
+		conn.commit()
+		cur.execute(''' 
+		CREATE UNIQUE INDEX IF NOT EXISTS IDX_Users ON Users(username)
 		''')
 		conn.commit()
 
@@ -53,7 +85,7 @@ def get_all_products():
 	# "Название: <title> | Описание: <description> | Цена: <price>
 	for t,d,p in _all:
 		str_=f'Название: {t} | Описание: {d} | Цена: {p}'
-		print(str_)
+#		print(str_)
 
 	conn.commit()
 
@@ -105,6 +137,37 @@ def insert_Products():
 	finally:
 		conn.commit()
 		get_all_products()
+
+
+#################
+def add_user(username, email, age):
+	balance_=1000
+	Sql= '''SELECT MAX(id) from Users'''
+	cur.execute(Sql)
+	id = cur.fetchone()[0]
+	if id is None:
+		id = 1
+	else:
+		id +=1
+	conn.commit()
+
+	Sql=(f"INSERT INTO Users (id,username, email, age, balance) VALUES({id},'{username}', '{email}', {age}, {balance_})")
+	print(Sql)
+	cur.execute(Sql)
+	conn.commit()
+
+
+def is_included(username):
+	Sql= f"""SELECT 1 from Users u WHERE u.username='{username}'"""
+	cur.execute(Sql)
+	result = cur.fetchone()
+	conn.commit()
+	print(f'is_included({username})',result)
+	if result is None:
+		return False
+	else:
+		return True
+
 
 
 

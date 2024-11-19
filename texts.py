@@ -10,3 +10,6 @@ prod_str4 = "Product--4\nХонда крем. Максимум хондроит�
 info = "а это мы\nпредлагаем товары от Эвалар"
 
 sold = "Вы успешно приобрели продукт!"
+
+registered = "ok. user is registered"
+not_registered = "no. user is not registered"
