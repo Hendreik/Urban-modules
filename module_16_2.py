@@ -45,8 +45,8 @@ async def read_user(
 @app.get("/user/{username}/{age}")
 async def _user(username: Annotated[
 	str, Path(min_length=5, max_length=20, regex="^[A-Za-z\\s]+$", title='Enter username',description='Enter username in english')],
-				age: Annotated[
-					int, Path(ge=18, le=120, title='Enter age', description="Enter age. only positive integer 18—120 ")]
+	age: Annotated[
+	int, Path(ge=18, le=120, title='Enter age', description="Enter age. only positive integer 18—120 ")]
 				):
 	"""
 	Выводим пользователя.
