@@ -41,6 +41,11 @@ if __name__=="__main__":
 cd app
 uvicorn main:app --reload
 """
+"""
+alembic revision --autogenerate -m "init migration"
+
+alembic upgrade head
+"""
 
 
 
