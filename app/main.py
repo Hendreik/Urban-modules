@@ -12,6 +12,8 @@ from fastapi import APIRouter
 from routers import user
 import routers.task as task
 
+#import backend.db as db
+
 router= APIRouter()
 app = FastAPI()
 
@@ -26,8 +28,15 @@ app.include_router(task.router)
 async def main():
 	return {"main":"Shop"}
 
+
+
 if __name__=="__main__":
 	import uvicorn
+
+	import app.backend.db as db
+	print(__name__)
+	db.Base.metadata.create_all(bind=db.engine)
+
 """
 cd app
 uvicorn main:app --reload
