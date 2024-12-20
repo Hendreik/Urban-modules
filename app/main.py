@@ -19,7 +19,7 @@ from schemas import * #CreateUser, UpdateUser
 from sqlalchemy import insert, select, update, delete
 # Функция создания slug-строки
 from slugify import slugify
-
+fgfg
 """
 #from app import *
 
