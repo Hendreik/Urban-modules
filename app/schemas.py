@@ -8,12 +8,16 @@ UpdateTask с теми же атрибутами, что и CreateTask.
 from pydantic import BaseModel
 
 class CreateUser(BaseModel):
-	name: str
-	description:str
-	price: float
-	image_url:str
-	stock: int
-	category: int
+	username:str
+	firstname: str
+	lastname: str
+	age: int
+	# name: str
+	# description:str
+	# price: float
+	# image_url:str
+	# stock: int
+	# category: int
 
 class UpdateUser(BaseModel):
 	firstname: str
