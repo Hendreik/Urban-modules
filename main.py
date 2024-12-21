@@ -43,6 +43,7 @@ import app.routers.user as r_user
 import app.routers.task as r_task
 #import routers.category as rc
 from app.routers import task,user
+import tasks as t
 
 from fastapi import FastAPI
 from fastapi import APIRouter, Depends, status, HTTPException
@@ -94,7 +95,17 @@ age: 40, 62, 25
 Удалите запись с id =2.
 Выведите всех пользователей.
 
-cd module17db\\app
+Создайте 4 записи Task для User с id=1 и id=3, по 2 на каждого в соответствии с порядком ниже:
+title: FirstTask, SecondTask, ThirdTask, FourthTask
+content: Content1, Content2, Content3, Content4
+priority: 0, 2, 4, 6
+user_id: 1, 1, 3, 3
+
+Удалите запись Task с id = 3.
+Удалите запись User с id = 1. (должны удалиться записи связанные с этим пользователем)
+Выведите все оставшиеся записи Task.
+
+cd module17db
 
 uvicorn main:app --reload
 """
@@ -103,23 +114,6 @@ alembic revision --autogenerate -m "init migration"
 
 alembic upgrade head
 """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

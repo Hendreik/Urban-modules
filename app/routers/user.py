@@ -35,6 +35,7 @@ from typing import Annotated, List
 # from models import User
 from app.schemas import CreateUser, UpdateUser
 from app.models.user import User
+from app.models.task import Task
 # Функции работы с записями.
 from sqlalchemy import insert, select, update, delete
 # Функция создания slug-строки
@@ -67,9 +68,17 @@ async def _userScalar(user_id: int, db: Annotated[Session, Depends(get_db)]):
 		raise HTTPException(status_code=404, detail=" not found")
 	return sess
 
+@router.get("/user_id/tasks")
+def tasks_by_user_id(user_id: int, db: Annotated[Session, Depends(get_db)]):
+	print(user_id,' with tasks')
+	stmt = select(Task).where(Task.user_id == user_id)
+	q = db.scalars(stmt).fetchall()
+	if q is None:
+		raise HTTPException(status_code=404, detail="tasks not found")
+	return q
 
+###########################
 _ok_ = {'status_code': status.HTTP_201_CREATED, 'transaction': 'Successful'}
-
 
 @router.post("/user_id")
 def create_(cru: CreateUser, session: Session = Depends(get_db)):
@@ -99,7 +108,7 @@ async def create_user(db: Annotated[Session, Depends(get_db)], create_user: Crea
 # except Exception as e:
 # 	print("error",e.__class__)
 
-
+##############################
 @router.put("/update")
 async def update_user(user_id: int,db: Annotated[Session, Depends(get_db)], update_user: UpdateUser):
 	print( {"update ...":f"update_user {user_id}"})
@@ -120,19 +129,37 @@ age=update_user.age
 
 @router.delete("/delete")
 async def delete_user(user_id: int,db: Annotated[Session, Depends(get_db)]):
-	res ={"delete ...": f"deleted user_id {user_id}"}
+	res ={"to delete ...": f" user_id {user_id}"}
 	print(res)
-	try:
-		with db:
-			u = db.scalar(select(User).where(User.id == user_id))
-			if u is None:
-				raise HTTPException(status_code=404, detail=" not found")
+	stmt = select(Task).where(Task.user_id == user_id)
+	qt = db.scalars(stmt).first()
+	print(qt)
+	if qt is None:
+		print(qt.__getstate__())
+		raise HTTPException(status_code=404, detail="tasks not found")
 
+	with db:
+		qu = db.scalar(select(User).where(User.id == user_id))
+		if qu is None:
+			raise HTTPException(status_code=404, detail="user not found")
+		try:
+			db.execute(delete(Task).where(Task.user_id == user_id))
 			db.execute(delete(User).where(User.id == user_id))
 			db.commit()
-			return res
-	except Exception as e:
-			raise HTTPException(status_code=400, detail=status.HTTP_400_BAD_REQUEST)
+
+			return {'status_code': status.HTTP_410_GONE}
+
+		except Exception as e:
+			db.rollback()
+			raise HTTPException(status_code=304, detail=e.__getstate__())
+
+# 		db.execute(delete(User).where(User.id == user_id))
+	# 		db.commit()
+	# 		return res
+	# except Exception as e:
+	# 		raise HTTPException(status_code=400, detail=status.HTTP_400_BAD_REQUEST)
+#	st = select(User).where(User.id == user_id)
+#	qu = db.scalar(st)
 
 #DELETE FROM users
 # user = session.scalar(select(User).where(User.id == 1))
