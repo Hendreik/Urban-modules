@@ -78,7 +78,6 @@ def get_message(request: Request, message_id: int) -> HTMLResponse:
 
 @app.get(path="/user/{user_id}")
 async def get_user(request: Request, user_id: int) -> HTMLResponse:
-	print(user_id, users[user_id].username)
 	try:
 		return templates.TemplateResponse("users.html", {"request": request, "user": users[user_id],
 														 "text": users[user_id].username})
@@ -89,7 +88,6 @@ async def get_user(request: Request, user_id: int) -> HTMLResponse:
 #############
 @app.post("/", status_code=status.HTTP_201_CREATED)
 def create_message(request: Request, message: str = Form()) -> HTMLResponse:
-	print(message)
 	if messages_db:
 		message__id = max(messages_db, key=lambda m: m.id).id + 1
 	else:
@@ -118,18 +116,14 @@ def create_(request: Request, message: str = Form()) -> HTMLResponse:
 @app.post("/user")
 def create_message(request: Request, age: int = Form(), message: str = Form()) -> HTMLResponse:
 	__id = len(users)
-	print(users, __id)
 	users.append(User(id=__id, username=message, age=age.__int__()))
-	print(users, message, "text", users[__id].username)
 	return templates.TemplateResponse("users.html", {"request": request, "user": users[__id],"text": users[__id].username})
 
 @app.put("/user/{User}")
 async def update_task(user: User):
-	print(user)
 	for u in users:
 		if u.id == user.id:
 			new_user = User(id=user.id,username=user.username,age=user.age.__int__())
-			print(new_user.age)
 			users.remove(u)
 			users.append(new_user)
 			return new_user
