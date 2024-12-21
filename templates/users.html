@@ -1,0 +1,68 @@
+{% extends 'main.html'%}
+
+{% block title %}
+
+{% endblock %}
+
+{% block crud_container %}
+<section class="container-fluid">
+    <form method="post" action="/user">
+        <div class="col-auto" align="center">
+            <div class="input-group mb-3">
+                <input type="text" name="message" value="{{text}}" class="form-control"
+                placeholder="Add new user" aria-label="Add user"
+                aria-describedby="button-addon2"/>
+                <input type="text" name="age" value="{{age}}" class="form-control"
+                placeholder="Add age" aria-label="Age"
+                aria-describedby="button-addon2"/>
+            </div>
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                data-mdb-ripple-color="dark">
+                    Add    ...
+                </button>
+        </div>
+        <p>После добавления надо обновить</p>
+    </form>
+</section>
+
+{% if user %}
+<article class="card container fluid">
+    <br>
+         Вывод свойств объекта User
+    <h2> ID: {{user.id}}</h2>
+    <p>
+        <strong> Text: {{text}} </strong>
+    <br>
+        <strong> Age: {{user.age}} </strong>
+    </p>
+    <br>
+
+</article>
+
+{% else %}
+<h1>Список </h1>
+    <section class="container-fluid">
+        <h2 align="center"> Users </h2>
+        <br>
+        <div class="card">
+            <ul class="list-group list-group-flush ">
+               {% for user in users %}
+               <li class="list-group-item">
+                 {{user.id}}  {{text}}<a href="/user/{{user.id}}">. user >> {{user.username}} ( {{user.age}} )</a> </li>
+               {% endfor %}
+            <br><br><br>
+
+            </ul>
+        </div>
+    </section>
+
+{% endif %}
+<section class="container-end">
+                <button class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/"> << back</a>
+                    return
+                </button>
+</section>
+
+{% endblock %}
