@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+<h2>" 3".</h2>
+<h2>{{title}}</h2>
+<h2>{{text}}</h2>
+<p>
+<h3 align="center">
+</h3>
+
+</p>
+<br>
+      <button class="btn btn-outline-primary" type="submit"
+      data-mdb-ripple-color="dark">
+          <h3>
+            return  <a href="/"> << back</a>
+          </h3>
+      </button>
+{% for l in lst%}
+
+<p>
+    {%if l|floatformat%}
+    {{l|floatformat:3 }}
+    {%else%}
+    {{l| upper }}
+    {%endif%}
+</p>
+{%endfor%}
+
+</body>
+</html>
