@@ -1,0 +1,26 @@
+from task1.models import Buyer,Game
+
+Buyer.objects.all()
+Buyer.objects.create(name='Bob', balance=100.0, age=30)
+Buyer.objects.create(name='Tom', balance=10.0, age=15)
+Buyer.objects.create(name='Doom', balance=500.0, age=33)
+Game.objects.all()
+Game.objects.create(title='Cyber', cost=33.3, size=103.93, description='Smoothy', age_limited=False)
+Game.objects.create(title='Hitman', cost=113.1, size=159.3, description='Gloom', age_limited=True)
+Game.objects.create(title='Death core', cost=666.6, size=303.9, description='Agony', age_limited=True)
+
+fb=Buyer.objects.filter(id=1)
+sb=Buyer.objects.filter(id=2)
+tb=Buyer.objects.filter(id=3)
+
+Game.objects.get(id=1).buyer.set((sb))
+Game.objects.get(id=1).buyer.set((fb))
+Game.objects.get(id=1).buyer.set((tb))
+Game.objects.get(id=2).buyer.set((tb))
+Game.objects.get(id=3).buyer.set((tb))
+
+/*
+select * from task1_game_buyer
+insert into task1_game_buyer(game_id,buyer_id) values (1,2)
+*/
+insert into task1_game_buyer(game_id,buyer_id) values (3,2)
