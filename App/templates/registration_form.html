@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+</head>
+<body>
+<h1>Форма ввода</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">send</button>
+   </form>
+<br>
+    <p></p>
+    <h3 align="center" color=red>
+        {% if error %}
+            info
+        <p>{{ error }}</p>
+        {% else %}
+        <p>{{ name }}</p>
+        {% endif %}
+    </h3>
+</body>
+</html>

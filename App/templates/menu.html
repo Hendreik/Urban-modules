@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Site {% endblock %}</title>
+    <link rel='stylesheet' type="text/css" href='{% static "style.css" %}'>
+</head>
+<body>
+    <header>
+        {% block pagename %}
+        <h1>"Главная страница"</h1>
+        {% endblock %}
+    </header>
+
+    <nav>
+        {% block menu %}
+        <ul>
+            <li><a href="#"> <h2>"Главная"</h2></a></li>
+            <li><a href="/1"> <h2>"Магазин"</h2></a></li>
+            <li><a href="/2"> <h2>"Корзина"</h2></a></li>
+        </ul>
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+
+        {% for l in lst.values%}
+            {{l.value }}
+        <p>
+            {%if l|floatformat%}
+            {{l|floatformat:3 }}
+            {%else%}
+            {{l| title }}
+            {%endif%}
+        </p>
+        {%endfor%}
+
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        <p></p>
+        <p></p>
+        <p>на начало 2025</p>
+
+    </footer>
+
+
+
+</body>
+</html>
