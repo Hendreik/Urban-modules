@@ -3,7 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView
 from  .forms import UserRegister
-from .models import Buyer,Game
+from .models import *
+from django.core.paginator import Paginator
 
 def index(request):
 	title= 'site'
@@ -34,9 +35,21 @@ def index1(request):
 class index2(TemplateView):
 	template_name = 'task2extend.html'
 
-class index3(TemplateView):
-	template_name = 'index.html'
+def index3(request):
+	title= 'site'
+	txt=''
+	news= News.objects.all().order_by('date')
+	paginator= Paginator(object_list=News.objects.all(),per_page=2,orphans=0)
+	page_number=request.GET.get('page')
+	page_obj= paginator.get_page(page_number)
 
+	context={
+		'title':title,
+		'text': paginator.object_list,
+		'news': news,
+		'page_obj': page_obj
+	}
+	return render(request,'news.html',context)
 
 def index4(request):
 
