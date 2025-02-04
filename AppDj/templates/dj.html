@@ -1,0 +1,62 @@
+{% extends "dst.html" %}
+
+{% block pagename %}
+    <nav class="navar">
+        <div class="p-4 mb-2 bg-primary text-white">
+            <h1 align="center">Db Application. {{ text }}</h1>
+        </div>
+    </nav>
+{% endblock pagename %}
+</header>
+<br>
+{% block content %}
+<div class="container-fluid">
+
+<!--    messages -->
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark grey">
+                    <a href="/dj/messages"> Form Messages</a>
+
+                </button>
+<!-- users-->
+                <button class="btn btn-outline-primary" disabled type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/dj/users"> Form Users</a>
+
+                </button>
+<!--  clients              -->
+                <button class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/dj/clients"> Form Clients</a>
+
+                </button>
+<!--    Goods            -->
+                <button disabled class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/dj/goods"> Form Goods</a>
+
+                </button>
+            </div>
+
+</div>
+{% endblock content %}
+
+<footer>
+    <hr>
+{% block footer %}
+    <section class="container-back" >
+        <p height="1" color="grey">
+        <button class="btn btn-outline-primary" type="submit"
+                    data-mdb-ripple-color="#9b9ecd" background-color="grey" height="1" color="grey">
+            <h6>return <a href="/"> << back</a></h6>
+        </button>
+        </p>
+    </section>
+    <hr/>
+
+{% endblock%}
+</footer>
+
+</body>
+</html>

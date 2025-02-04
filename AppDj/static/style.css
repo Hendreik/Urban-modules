@@ -1,0 +1,59 @@
+table {
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+th,td {
+  border: 1px solid rgb(160 160 160);
+}
+
+th[scope='col'] {
+  background-color: #505050;
+  color: #fff;
+}
+
+th[scope='row'] {
+  background-color: #d6ecd4;
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+}
+################
+<!-- -->
+{------------------------------------------}
+body {
+	background-color: #d6dce3;
+}
+h1 {
+	text-align:center;
+	background-color: #acb3bc;
+}
+header {
+	text-align:center;
+	background-color: #d4dae0;
+
+}
+
+nav {
+ color: grey;
+}
+
+div {
+    align: center;
+}
+button {
+ align= center;
+}
+

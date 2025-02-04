@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Site {% endblock %}</title>
+    <link rel='stylesheet' type="text/css" href='{% static "style.css" %}'>
+</head>
+<body>
+    <header>
+        {% block pagename %}
+        <h1>"Главная страница"</h1>
+        {% endblock pagename %}
+    </header>
+
+    <nav>
+        {% block menu %}
+    <section class="container-back" >
+        <p height="30" background-color="grey">
+        <button class="btn btn-outline-primary" type="submit"
+                    data-mdb-ripple-color="#9b9ecd">
+                        <h1><a href="/dj/"> << back</a>
+                        return</h1>
+        </button>
+        </p>
+    </section>
+    <hr/>
+
+       <ul>
+        </ul>
+        {% endblock %}
+    </nav>
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        {% block footer %}
+
+        <p></p>
+        <p></p>
+        <p>на начало 2025</p>
+        {% for l in lst.values%}
+            {{l.value }}
+        <p>
+            {%if l|floatformat%}
+            {{l|floatformat:3 }}
+            {%else%}
+            {{l| upper }}
+            {%endif%}
+        </p>
+        {%endfor%}
+
+        {% endblock %}
+    </footer>
+
+
+
+</body>
+</html>
