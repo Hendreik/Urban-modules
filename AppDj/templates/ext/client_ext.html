@@ -1,0 +1,78 @@
+{% extends "common.html" %}
+
+{% block pagename %}
+<h1>Клиенты</h1>
+{% endblock %}
+
+{% block content %}
+
+    <table>
+    <tr>
+    <th><h3>фамилия</h3></th>
+    <th>имя</th>
+    <th>отч.</th>
+    <th>возраст:</th>
+    </tr>
+    </table>
+
+<hr/>
+{% for l in lst %}
+<ul>
+    <li>
+    <pre><h3>{{ l.name }}    </h3></pre> |
+    {{ l.firstname }}     | {{l.lastname}}     |  {{ l.age }}          <button formaction="/clients/"
+            type="submit"> Delete<a href="/dj/fc/del/{{l.id}}"> ...id= {{l.id}}</a></button>
+    </li>
+</ul>
+{% endfor %}
+
+<!--  clients              -->
+<button class="btn btn-outline-primary" type="submit"
+        data-mdb-ripple-color="dark">
+    <a href="/dj/fc/"> Form Add Clients</a>
+</button>
+
+<section class="container-fluid">
+    <form method="post" action="/dj/add/">
+        {% csrf_token %}
+        <div class="col-auto" align="center">
+            <div class="input-group mb-2">
+                <input type="text" name="name" value="" class="form-control"
+                placeholder="Add name " aria-label="Add "
+                aria-describedby="button-addon2"/>
+                <input type="text" name="firstname" value="" class="form-control"
+                placeholder="Add firstname " aria-label="Add "
+                aria-describedby="button-addon2"/>
+                <input type="text" name="lastname_" value="" class="form-control"
+                placeholder="Add lastname " aria-label="Add "
+                aria-describedby="button-addon2"/>
+                <input type="text" name="age_" value="" class="form-control"
+                placeholder="Add age" aria-label="Age"
+                aria-describedby="button-addon2"/>
+            </div>
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                data-mdb-ripple-color="dark">
+                    Add    ...
+                </button>
+        </div>
+        <p></p>
+    </form>
+</section>
+<section class="container-fluid">
+    <form method="post" action="/dj/fc/del/{id}/">
+        {% csrf_token %}
+        <div class="col-auto1" align="center">
+            <div class="input-group mb-2">
+                <input type="number" name="id" value="id" class="form-control"
+                placeholder="id " aria-label="id "
+                aria-describedby="button-addon3"/>
+            </div>
+                <button class="btn btn-outline-primary" type="submit" id="button-addon3"
+                data-mdb-ripple-color="dark">
+                    Delete    ...
+                </button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

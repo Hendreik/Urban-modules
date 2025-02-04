@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form input</title>
+</head>
+<body>
+<section class="container-end">
+                <button class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/dj/clients/"> << back</a>
+                    return
+                </button>
+</section>
+<b></b>
+<h1>Форма ввода. Clients. django</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">send</button>
+   </form>
+<br>
+    <p></p>
+    <h3 align="center" color=red>
+        {% if error %}
+            info
+        <p>{{ error }}</p>
+        {% else %}
+        <p>{{ name }}</p>
+        {% endif %}
+    </h3>
+
+<footer>
+<hr>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+</head>
+<body>
+<section class="container-end">
+                <button class="btn btn-outline-primary" type="submit"
+                data-mdb-ripple-color="dark">
+                    <a href="/clients/"> << back</a>
+                    return
+                </button>
+</section>
+<b></b>
+<h1>Форма ввода. users. html</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <label for="username">Введите логин</label>
+        <input type="text" id="uname" name="uname" maxlength="30" required>
+
+        <label for="firstnsme">Введите пароль</label>
+        <input type="text" id="pwd" name="pwd" minlength="8" required>
+
+        <label for="lastname">Повторите пароль</label>
+        <input type="text" id="r_password" name="rpwd" minlength="8" required>
+
+        <label for="age">Введите свой возраст</label>
+        <input type="text" id="age" name="age_" maxlength="3" required>
+
+        <button type="submit">send</button>
+    </form>
+
+</body>
+</html>

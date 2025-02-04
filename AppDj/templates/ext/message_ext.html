@@ -1,0 +1,92 @@
+{% extends "common.html" %}
+
+{% block pagename %}
+<h1>Messages  /  News</h1>
+{% endblock %}
+
+{% block content %}
+
+    <table  border= "2px solid rgb(140 140 140)" cellspacing="2" cellpadding="4" border="1" width="800">
+    <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Дата</th>
+    </tr>
+    </table>
+
+<hr/>
+{% for l in lst %}
+<ul>
+    <li>
+    <pre><h3>{{ l.title }}    </h3></pre> |
+    {{ l.content }}     | {{l.date}}     |           <button formaction="/messages/"
+            type="submit"> Delete<a href="/dj/fm/del/{{l.id}}"> ...id= {{l.id}}</a></button>
+    </li>
+</ul>
+{% endfor %}
+
+<!--  news              -->
+<hr>
+<p><button  type="submit" background-color="grey">
+    <a href="/dj/msg/add/"> Form Add News</a>
+   </button>
+</p>
+<section>
+    <form method="post" action="/dj/msg/add/">
+        {% csrf_token %}
+        <div class="col-auto" align="center">
+            <div class="input-group mb-2" font-size="12">
+                <input type="text" name="title" value="" class="form-control"
+                placeholder="Add title " aria-label="Add "
+                aria-describedby="button-addon2"/>
+                <input type="text" name="content" line-height="2em" size="90" style="height:30px" rows="4"value="" class="form-control"
+                placeholder="Add content " aria-label="Add "
+                aria-describedby="button-addon2"/>
+                <label for="date">Дата :  </label>
+                <input type="datetime-local" name="date" value={{datetime.now}} class="form-control"
+                placeholder={{datetime.now}} aria-label="Add "
+                aria-describedby="button-addon2"/>
+                {{dt}}
+            </div>
+            <p><button class="btn btn-outline-primary" type="submit" id="button-addon2"
+                data-mdb-ripple-color="dark">
+                    Add    ...
+                </button>
+            </p>
+        </div>
+    </form>
+</section>
+<br>
+<hr>
+
+<section>
+    <form method="post"  action="/dj/fm/del/">
+        {% csrf_token %}
+        <div class="col-auto1" align="center">
+            <div class="input-group mb-3">
+                <input type="text" name="id_" value="" class="form-control"
+                placeholder="id " aria-label="id "
+                aria-describedby="button-addon3"/>
+            </div>
+            <p><button class="btn btn-outline-primary" type="submit" id="button-addon3"
+                data-mdb-ripple-color="dark">
+                    Delete    ...
+                </button></p>
+        <p><h3>{{info.error}}{{info.errorId}}{{info.name}}</h3></p>
+        </div>
+    </form>
+</section>
+
+{% endblock %}
+
+<!--
+formaction="/dj/fc/"
+/dj/fm/del/
+ -->
+    <footer>
+    </footer>
+
+{% block footer %}
+
+
+{% endblock %}
